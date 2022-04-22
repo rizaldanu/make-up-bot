@@ -1,6 +1,6 @@
 # Make-Up Bot
 
-Make-up Bot dibuat untuk Telegram Bot yang berguna untuk sistem pemesanan jasa make-up artist.
+Make-up Bot dibuat untuk Telegram Bot yang berguna sebagai sistem pemesanan jasa make-up artist.
 
 ## Fitur
 

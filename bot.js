@@ -100,14 +100,14 @@ bot.command('start', ctx => {
 
 bot.help(ctx => ctx.replyWithPhoto(
     'https://play-lh.googleusercontent.com/VPqK75BwKMtTDFF6UQS6E3GYdYqzvZfddDxoKRH-DSlXIcYLN_EeSy5OXKx0bhBTtLUU',
-    Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/album - menampilkan contoh jenis make-up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make-up artist\n\n/pesan - melakukan pemesanan make-up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - infromasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown()
+    Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/album - menampilkan contoh jenis make-up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make-up artist\n\n/pesan - melakukan pemesanan make-up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - infromasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown()
 ))
 
 bot.action('bantuan', ctx => {
     ctx.answerCbQuery();
     ctx.replyWithPhoto(
         'https://play-lh.googleusercontent.com/VPqK75BwKMtTDFF6UQS6E3GYdYqzvZfddDxoKRH-DSlXIcYLN_EeSy5OXKx0bhBTtLUU',
-        Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/album - menampilkan contoh jenis make-up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make-up artist\n\n/pesan - melakukan pemesanan make-up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - infromasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown())
+        Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/album - menampilkan contoh jenis make-up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make-up artist\n\n/pesan - melakukan pemesanan make-up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - infromasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown())
 })
 
 bot.command('album', (ctx) => {
@@ -139,6 +139,46 @@ bot.command('album', (ctx) => {
       }
     ])
   })  
+
+bot.command('hp', ctx => {
+    let id = ctx.from.id
+    let input = ctx.message.text.split(" ");
+    if (input.length != 2){
+        ctx.reply("Anda harus menyertakan nomor handphone pada argumen kedua");
+        return;
+    }
+    let alamat = input[1];
+    //console.log(input[1]);
+    var sql = `UPDATE user
+                SET phone="${alamat}"
+                WHERE id="${id}"`;
+    conn.query(sql, function(err, result){
+        if(err){
+            throw err;
+        };
+        ctx.reply('Nomor handphone berhasil diperbarui.')
+    })
+})
+
+bot.command('alamat', ctx => {
+    let id = ctx.from.id
+    let input = ctx.message.text.split(" ");
+    if (input.length != 2){
+        ctx.reply("Anda harus menyertakan alamat pada argumen kedua dipisahkan dengan simbol _");
+        return;
+    }
+    let alamat = input[1];
+    //console.log(input[1]);
+    var sql = `UPDATE user
+                SET alamat="${alamat}"
+                WHERE id="${id}"`;
+    conn.query(sql, function(err, result){
+        if(err){
+            throw err;
+        };
+        ctx.reply('Alamat berhasil diperbarui.')
+    })
+})
 
 bot.command('carapesan', ctx => {
     ctx.reply("Akan segera hadir");

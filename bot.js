@@ -147,10 +147,10 @@ bot.command('hp', ctx => {
         ctx.reply("Anda harus menyertakan nomor handphone pada argumen kedua");
         return;
     }
-    let alamat = input[1];
+    let phone = input[1];
     //console.log(input[1]);
     var sql = `UPDATE user
-                SET phone="${alamat}"
+                SET phone="${phone}"
                 WHERE id="${id}"`;
     conn.query(sql, function(err, result){
         if(err){
@@ -177,6 +177,25 @@ bot.command('alamat', ctx => {
             throw err;
         };
         ctx.reply('Alamat berhasil diperbarui.')
+    })
+})
+
+bot.command('pesan', ctx => {
+    let id = ctx.from.id
+    let input = ctx.message.text.split(" ");
+    if (input.length != 3){
+        ctx.reply("Mohon lihat panduan pada gambar diatas untuk format penulisan yang benar");
+        return;
+    }
+    let jenis_makeup = input[1];
+    let tanggal_makeup = input[2];
+    //console.log(input[1]);
+    var sql = `INSERT IGNORE pesanan(id_user, jenis_makeup, tanggal_makeup, biaya, status) VALUES('${id}', '${jenis_makeup}', '${tanggal_makeup}', 500000, 'Menunggu Pembayaran dan Konfirmasi')`;
+    conn.query(sql, function(err, result){
+        if(err){
+            throw err;
+        };
+        ctx.reply('Pesanan Anda Sukses!')
     })
 })
 

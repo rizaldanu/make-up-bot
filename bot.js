@@ -15,7 +15,7 @@ const conn = mysql.createConnection({
 
 function dbconn() {
     console.log("Database connected !");
-    conn.query("SELECT * FROM user", function (err, result, fields){
+    conn.query(`SELECT * FROM user`, function (err, result, fields){
         if(err){
             throw err;
         }
@@ -26,7 +26,9 @@ function dbconn() {
                 id: item.id,
                 username: item.username,
                 first_name: item.first_name,
-                last_name: item.last_name
+                last_name: item.last_name,
+                phone : item.phone,
+                alamat : item.alamat
             })
         })
     })
@@ -37,7 +39,7 @@ conn.connect(function(err){
         throw err;
     }
     console.log("Database connected !");
-    conn.query("SELECT * FROM user", function (err, result, fields){
+    conn.query(`SELECT * FROM user`, function (err, result, fields){
         if(err){
             throw err;
         }
@@ -48,7 +50,9 @@ conn.connect(function(err){
                 id: item.id,
                 username: item.username,
                 first_name: item.first_name,
-                last_name: item.last_name
+                last_name: item.last_name,
+                phone : item.phone,
+                alamat : item.alamat
             })
         })
     })
@@ -164,7 +168,7 @@ bot.command('alamat', ctx => {
     let id = ctx.from.id
     let input = ctx.message.text.split(" ");
     if (input.length != 2){
-        ctx.reply("Anda harus menyertakan alamat pada argumen kedua dipisahkan dengan simbol _");
+        ctx.reply("Anda harus menyertakan alamat pada argumen kedua [spasi] dipisahkan dengan simbol _");
         return;
     }
     let alamat = input[1];
@@ -199,6 +203,34 @@ bot.command('pesan', ctx => {
     })
 })
 
+bot.command('profil', ctx => {
+    let id_nya = ctx.from.id
+    console.log(id_nya)
+    var profil = `SELECT * FROM user WHERE id="${id_nya}"`;
+    conn.query(profil, function(err, result){
+        if(err){
+            throw err;
+        };
+        let profilMessage = 'Informasi Profil Kamu\n\n'
+        dataStore = [];
+        result.forEach(item => {
+            dataStore.push({
+                id: item.id,
+                username: item.username,
+                first_name: item.first_name,
+                last_name: item.last_name,
+                phone : item.phone,
+                alamat : item.alamat
+            })
+        })
+        dataStore.forEach(item => {
+            profilMessage += `ID User : ${item.id}\nUsername: ${item.username}\nNama Lengkap: ${item.first_name} ${item.last_name}\nNomor Telepon/WhatsApp: ${item.phone}\nAlamat Lengkap: ${item.alamat}`;
+        })
+        
+        ctx.reply(profilMessage);
+    })
+})
+
 bot.command('carapesan', ctx => {
     ctx.reply("Akan segera hadir");
 })
@@ -215,15 +247,15 @@ bot.command('status', ctx => {
     ctx.reply("Akan segera hadir");
 })
 
-bot.command('userlist', ctx => {
-    let userlistMessage = 'List user :\n'
-
-    dataStore.forEach(item => {
-        userlistMessage += `${item.username}. ${item.first_name}. ${item.last_name}\n`;
-    })
+// bot.command('userlist', ctx => {
+//     let userlistMessage = 'List user :\n'
+//     let id = ctx.from.id
+//     dataStore.forEach(item => {
+//         userlistMessage += `${item.username}. ${item.first_name}. ${item.last_name}.${item.alamat}\n`;
+//     })
     
-    ctx.reply(userlistMessage);
-})
+//     ctx.reply(userlistMessage);
+// })
 
 bot.launch();
 

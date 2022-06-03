@@ -12,7 +12,7 @@
   "dependencies": {
     "dotenv": "^16.0.0",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.15",
+    "nodemon": "^2.0.16",
     "telegraf": "^3.38.0"
   }
 }

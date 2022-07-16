@@ -87,7 +87,7 @@ bot.command('start', ctx => {
         // console.log(`Data user ${username} berhasil ditambahkan`);
         // ctx.reply(`Halo ${first_name} Selamat datang \nSilahkan gunakan menu /help untuk melihat daftar lengkap perintah Bot ini.`)
         dbconn();
-    bot.telegram.sendMessage(ctx.chat.id, `Selamat Datang Kak, ${first_name} 🐷\n\nSilahkan gunakan menu /help atau klik tombol di bawah untuk melihat daftar lengkap perintah Bot`,
+    bot.telegram.sendMessage(ctx.chat.id, `Selamat Datang Kak, ${first_name} ✨\n\nSilahkan gunakan menu /help atau klik tombol di bawah untuk melihat daftar lengkap perintah Bot`,
     {
         reply_markup: {
             inline_keyboard: [
@@ -104,45 +104,45 @@ bot.command('start', ctx => {
 
 bot.help(ctx => ctx.replyWithPhoto(
     'https://play-lh.googleusercontent.com/VPqK75BwKMtTDFF6UQS6E3GYdYqzvZfddDxoKRH-DSlXIcYLN_EeSy5OXKx0bhBTtLUU',
-    Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/album - menampilkan contoh jenis make-up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make-up artist\n\n/pesan - melakukan pemesanan make-up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - infromasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown()
+    Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan contoh jenis make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make-up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - infromasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown()
 ))
 
 bot.action('bantuan', ctx => {
     ctx.answerCbQuery();
     ctx.replyWithPhoto(
         'https://play-lh.googleusercontent.com/VPqK75BwKMtTDFF6UQS6E3GYdYqzvZfddDxoKRH-DSlXIcYLN_EeSy5OXKx0bhBTtLUU',
-        Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/album - menampilkan contoh jenis make-up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make-up artist\n\n/pesan - melakukan pemesanan make-up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - infromasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown())
+        Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan contoh jenis make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make-up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - infromasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown())
 })
 
 bot.command('album', (ctx) => {
     ctx.replyWithMediaGroup([
-    //   {
-    //     media: 'https://picsum.photos/200/500/',
-    //     caption: 'From URL',
-    //     type: 'photo'
-    //   },
-    //   {
-    //     media: { url: 'https://picsum.photos/200/300/?random' },
-    //     caption: 'Piped from URL',
-    //     type: 'photo'
-    //   },
-      {
-        media: { source: 'img/make-up-flawless.jpeg' },
-        caption: 'Make-Up Flawless',
-        type: 'photo'
-      },
-      {
-        media: { source: 'img/make-up-natural.jpeg' },
-        caption: 'Make-up Natural',
-        type: 'photo'
-      },
-      {
-        media: { source: 'img/make-up-korea.jpeg' },
-        caption: 'Make-up Korea Look',
-        type: 'photo'
-      }
+        //   {
+        //     media: 'https://picsum.photos/200/500/',
+        //     caption: 'From URL',
+        //     type: 'photo'
+        //   },
+        //   {
+        //     media: { url: 'https://picsum.photos/200/300/?random' },
+        //     caption: 'Piped from URL',
+        //     type: 'photo'
+        //   },
+        {
+            media: { source: 'img/make-up-flawless.jpeg' },
+            caption: 'Make-Up Flawless',
+            type: 'photo'
+        },
+        {
+            media: { source: 'img/make-up-natural.jpeg' },
+            caption: 'Make-up Natural',
+            type: 'photo'
+        },
+        {
+            media: { source: 'img/make-up-korea.jpeg' },
+            caption: 'Make-up Korea Look',
+            type: 'photo'
+        }
     ])
-  })  
+})  
 
 bot.command('hp', ctx => {
     let id = ctx.from.id
@@ -188,13 +188,13 @@ bot.command('pesan', ctx => {
     let id = ctx.from.id
     let input = ctx.message.text.split(" ");
     if (input.length != 3){
-        ctx.reply("Mohon lihat panduan pada gambar diatas untuk format penulisan yang benar");
+        ctx.replyWithMarkdown(`*Format pesanan salah!*\nMohon lihat panduan pada gambar /carapesan untuk format penulisan yang benar`);
         return;
     }
-    let jenis_makeup = input[1];
+    let kode_makeup = input[1];
     let tanggal_makeup = input[2];
     //console.log(input[1]);
-    var sql = `INSERT IGNORE pesanan(id_user, jenis_makeup, tanggal_makeup, biaya, status) VALUES('${id}', '${jenis_makeup}', '${tanggal_makeup}', 500000, 'Menunggu Pembayaran dan Konfirmasi')`;
+    var sql = `INSERT IGNORE pesanan(id_user, kode_makeup, tanggal_makeup, status) VALUES('${id}', '${kode_makeup}', '${tanggal_makeup}', 'Menunggu Pembayaran dan Konfirmasi')`;
     conn.query(sql, function(err, result){
         if(err){
             throw err;

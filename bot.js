@@ -186,7 +186,8 @@ bot.command('hp', ctx => {
     let id = ctx.from.id
     let input = ctx.message.text.split(" ");
     if (input.length != 2){
-        ctx.reply("Anda harus menyertakan nomor handphone pada argumen kedua");
+        ctx.reply("Anda harus menyertakan nomor handphone pada argumen kedua, lihat contoh pada lampiran gambar berikut.");
+        ctx.replyWithPhoto('https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/panduan-hp.png');
         return;
     }
     let phone = input[1];
@@ -206,7 +207,8 @@ bot.command('alamat', ctx => {
     let id = ctx.from.id
     let input = ctx.message.text.split(" ");
     if (input.length != 2){
-        ctx.reply("Anda harus menyertakan alamat pada argumen kedua [spasi] dipisahkan dengan simbol _");
+        ctx.reply("Anda harus menyertakan alamat pada argumen kedua [spasi] dipisahkan dengan simbol _\nlihat contoh pada lampiran gambar berikut.");
+        ctx.replyWithPhoto('https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/panduan-alamat.png');
         return;
     }
     let alamat = input[1];
@@ -274,8 +276,8 @@ bot.command('profil', ctx => {
 
 bot.command('carapesan', ctx => {
     // ctx.reply("Akan segera hadir");
-    $admin = 810185463
-    bot.telegram.sendMessage($admin, "Hello")
+    ctx.reply("Panduan pemesanan dapat dilihat pada lampiran gambar berikut.");
+    ctx.replyWithPhoto('https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/panduan-pemesanan.png');
 })
 
 // bot.command('pesan', ctx => {

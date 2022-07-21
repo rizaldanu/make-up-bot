@@ -162,7 +162,7 @@ bot.command('cekjadwal', ctx => {
         })
         
         ctx.replyWithMarkdown(jadwalMessage);
-    ctx.replyWithMarkdown('*Tanggal yang sudah tercantum dalam daftar tersebut, sudah tidak dapat di-order lagi, silahkan order pada tanggal lain dari yang tercantum.\n\nJika order pada tanggal yang sudah tercantum maka pesanan akan dibatalkan oleh admin.*')
+    ctx.replyWithMarkdown('*Tanggal yang sudah tercantum dalam daftar tersebut sudah tidak dapat di-order lagi.\nSilahkan order pada tanggal lain dari yang tercantum.\n\nJika order pada tanggal yang sudah tercantum maka pesanan akan dibatalkan oleh admin.*')
     })
 })
 

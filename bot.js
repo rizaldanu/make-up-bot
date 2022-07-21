@@ -103,14 +103,14 @@ bot.command('start', ctx => {
 })
 
 bot.help(ctx => ctx.replyWithPhoto(
-    'https://play-lh.googleusercontent.com/VPqK75BwKMtTDFF6UQS6E3GYdYqzvZfddDxoKRH-DSlXIcYLN_EeSy5OXKx0bhBTtLUU',
+    'https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/perintahbot.png',
     Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan contoh jenis make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make-up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - infromasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown()
 ))
 
 bot.action('bantuan', ctx => {
     ctx.answerCbQuery();
     ctx.replyWithPhoto(
-        'https://play-lh.googleusercontent.com/VPqK75BwKMtTDFF6UQS6E3GYdYqzvZfddDxoKRH-DSlXIcYLN_EeSy5OXKx0bhBTtLUU',
+        'https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/perintahbot.png',
         Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan contoh jenis make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make-up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - infromasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown())
 })
 
@@ -143,6 +143,44 @@ bot.command('album', (ctx) => {
         }
     ])
 })  
+
+bot.command('cekjadwal', ctx => {
+    var cekjadwal = `SELECT * FROM pesanan WHERE status="Proses Make Up"`;
+    conn.query(cekjadwal, function(err, result){
+        if(err){
+            throw err;
+        };
+        let jadwalMessage = 'Berikut jadwal tanggal make up yang sudah di-order\n\n'
+        dataStore = [];
+        result.forEach(item => {
+            dataStore.push({
+                tanggal_makeup: item.tanggal_makeup
+            })
+        })
+        dataStore.forEach(item => {
+            jadwalMessage += `${item.tanggal_makeup}\n\n`;
+        })
+        
+        ctx.replyWithMarkdown(jadwalMessage);
+    ctx.replyWithMarkdown('*Tanggal yang sudah tercantum dalam daftar tersebut, sudah tidak dapat di-order lagi, silahkan order pada tanggal lain dari yang tercantum.\n\nJika order pada tanggal yang sudah tercantum maka pesanan akan dibatalkan oleh admin.*')
+    })
+})
+
+bot.command('pricelist', ctx => {
+    ctx.replyWithMediaGroup([
+        {
+            media: { source: 'img/price-list.png' },
+            caption: 'Pricelist Make Up',
+            type: 'photo'
+        },
+        {
+            media: { source: 'img/price-list-item-tambahan.png' },
+            caption: 'Pricelist Item Tambahan',
+            type: 'photo'
+        }
+    ])
+    ctx.replyWithMarkdown(`Jika lampiran gambar kurang jelas, bisa dilihat pada tautan berikut [Tabel Pricelist](https://dev.rizdan.com/ochii/pricelist.php)`);
+})
 
 bot.command('hp', ctx => {
     let id = ctx.from.id
@@ -187,19 +225,22 @@ bot.command('alamat', ctx => {
 bot.command('pesan', ctx => {
     let id = ctx.from.id
     let input = ctx.message.text.split(" ");
-    if (input.length != 3){
-        ctx.replyWithMarkdown(`*Format pesanan salah!*\nMohon lihat panduan pada gambar /carapesan untuk format penulisan yang benar`);
+    if (input.length != 4){
+        ctx.replyWithMarkdown(`*Format pesanan ada yang kurang!*\nMohon lihat panduan pada gambar /carapesan untuk format penulisan yang benar`);
         return;
     }
     let kode_makeup = input[1];
-    let tanggal_makeup = input[2];
+    let kode_item = input[2];
+    let tanggal_makeup = input[3];
     //console.log(input[1]);
-    var sql = `INSERT IGNORE pesanan(id_user, kode_makeup, tanggal_makeup, status) VALUES('${id}', '${kode_makeup}', '${tanggal_makeup}', 'Menunggu Pembayaran dan Konfirmasi')`;
+    var sql = `INSERT IGNORE pesanan(id_user, kode_makeup, kode_item, tanggal_makeup, status) VALUES('${id}', '${kode_makeup}', '${kode_item}', '${tanggal_makeup}', 'Menunggu Pembayaran dan Konfirmasi')`;
     conn.query(sql, function(err, result){
         if(err){
             throw err;
         };
-        ctx.reply('Pesanan Anda Sukses!')
+        ctx.replyWithMarkdown('*Pesanan Anda Sukses!*\n\nSilahkan lihat status pesanan di menu /status')
+        $admin = 5398951868
+        bot.telegram.sendMessage($admin, `Halo Admin, ada Pesanan Baru untuk tanggal ${tanggal_makeup}\n\nSilahkan segera di-cek pada web admin \nhttps://dev.rizdan.com/ochii/`)
     })
 })
 
@@ -232,19 +273,45 @@ bot.command('profil', ctx => {
 })
 
 bot.command('carapesan', ctx => {
-    ctx.reply("Akan segera hadir");
+    // ctx.reply("Akan segera hadir");
+    $admin = 810185463
+    bot.telegram.sendMessage($admin, "Hello")
 })
 
-bot.command('pesan', ctx => {
-    ctx.reply("Akan segera hadir");
-})
+// bot.command('pesan', ctx => {
+//     ctx.reply("Akan segera hadir");
+// })
 
 bot.command('pembayaran', ctx => {
-    ctx.reply("Akan segera hadir");
+    ctx.replyWithMarkdown('Silahkan chat admin @novikaanggraini untuk mendapatkan informasi pembayaran dan harga total yang harus dibayar.\n\nSetelah pembayaran selesai dan pesanan dikonfirmasi maka dalam menu /status pemesanan anda berstatus Proses Make Up\n\n*Catatan: harga total tidak dapat dicantumkan di awal karena biaya datang ke tempat client berbeda setiap jarak*');
 })
 
 bot.command('status', ctx => {
-    ctx.reply("Akan segera hadir");
+    let id_nya = ctx.from.id
+    console.log(id_nya)
+    var profil = `SELECT * FROM pesanan WHERE id_user="${id_nya}"`;
+    conn.query(profil, function(err, result){
+        if(err){
+            throw err;
+        };
+        let statusMessage = 'Informasi Pesanan Kamu\n==============================\n\n'
+        dataStore = [];
+        result.forEach(item => {
+            dataStore.push({
+                id: item.id,
+                kode_makeup: item.kode_makeup,
+                kode_item: item.kode_item,
+                tanggal_makeup: item.tanggal_makeup,
+                status: item.status
+            })
+        })
+        dataStore.forEach(item => {
+            statusMessage += `ID Pesanan : #${item.id}\n\n*Status Pesanan: ${item.status}*\n\nKode Make Up: ${item.kode_makeup}\n\nKode Item: ${item.kode_item}\n\nTanggal Make Up: ${item.tanggal_makeup}\n\n==============================\n\n`;
+        })
+        
+        ctx.replyWithMarkdown(statusMessage);
+    ctx.replyWithMarkdown('*Silahkan gunakan menu /pembayaran untuk petunjuk pembayaran*')
+    })
 })
 
 // bot.command('userlist', ctx => {

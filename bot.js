@@ -104,14 +104,14 @@ bot.command('start', ctx => {
 
 bot.help(ctx => ctx.replyWithPhoto(
     'https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/perintahbot.png',
-    Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan contoh jenis make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make-up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - infromasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown()
+    Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan contoh jenis make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - informasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown()
 ))
 
 bot.action('bantuan', ctx => {
     ctx.answerCbQuery();
     ctx.replyWithPhoto(
         'https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/perintahbot.png',
-        Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan contoh jenis make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make-up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - infromasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown())
+        Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan contoh jenis make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - informasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown())
 })
 
 bot.command('album', (ctx) => {
@@ -127,21 +127,57 @@ bot.command('album', (ctx) => {
         //     type: 'photo'
         //   },
         {
-            media: { source: 'img/make-up-flawless.jpeg' },
-            caption: 'Make-Up Flawless',
+            media: { source: 'img/1.jpg' },
+            caption: 'Album Ochii Make Up Artist',
             type: 'photo'
         },
         {
-            media: { source: 'img/make-up-natural.jpeg' },
-            caption: 'Make-up Natural',
+            media: { source: 'img/2.jpg' },
+            caption: 'Album Ochii Make Up Artist',
             type: 'photo'
         },
         {
-            media: { source: 'img/make-up-korea.jpeg' },
-            caption: 'Make-up Korea Look',
+            media: { source: 'img/3.jpeg' },
+            caption: 'Album Ochii Make Up Artist',
+            type: 'photo'
+        },
+        {
+            media: { source: 'img/4.jpg' },
+            caption: 'Album Ochii Make Up Artist',
+            type: 'photo'
+        },
+        {
+            media: { source: 'img/5.jpg' },
+            caption: 'Album Ochii Make Up Artist',
+            type: 'photo'
+        },
+        {
+            media: { source: 'img/6.jpeg' },
+            caption: 'Album Ochii Make Up Artist',
+            type: 'photo'
+        },
+        {
+            media: { source: 'img/7.jpg' },
+            caption: 'Album Ochii Make Up Artist',
+            type: 'photo'
+        },
+        {
+            media: { source: 'img/8.jpg' },
+            caption: 'Album Ochii Make Up Artist',
+            type: 'photo'
+        },
+        {
+            media: { source: 'img/9.jpeg' },
+            caption: 'Album Ochii Make Up Artist',
+            type: 'photo'
+        },
+        {
+            media: { source: 'img/10.jpeg' },
+            caption: 'Album Ochii Make Up Artist',
             type: 'photo'
         }
     ])
+    ctx.replyWithMarkdown("Album lengkap kunjungi akun [https://www.instagram.com/ochiiochii.mua/](Instagram ochiiochii.mua)");
 })  
 
 bot.command('cekjadwal', ctx => {

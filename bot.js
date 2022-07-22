@@ -137,7 +137,7 @@ bot.command('album', (ctx) => {
             type: 'photo'
         },
         {
-            media: { source: 'img/3.jpeg' },
+            media: { source: 'img/3.jpg' },
             caption: 'Album Ochii Make Up Artist',
             type: 'photo'
         },
@@ -152,7 +152,7 @@ bot.command('album', (ctx) => {
             type: 'photo'
         },
         {
-            media: { source: 'img/6.jpeg' },
+            media: { source: 'img/6.jpg' },
             caption: 'Album Ochii Make Up Artist',
             type: 'photo'
         },
@@ -167,17 +167,17 @@ bot.command('album', (ctx) => {
             type: 'photo'
         },
         {
-            media: { source: 'img/9.jpeg' },
+            media: { source: 'img/9.jpg' },
             caption: 'Album Ochii Make Up Artist',
             type: 'photo'
         },
         {
-            media: { source: 'img/10.jpeg' },
+            media: { source: 'img/10.jpg' },
             caption: 'Album Ochii Make Up Artist',
             type: 'photo'
         }
     ])
-    ctx.replyWithMarkdown("Album lengkap kunjungi akun [https://www.instagram.com/ochiiochii.mua/](Instagram ochiiochii.mua)");
+    ctx.replyWithMarkdown("Gambar akan muncul dalam beberapa detik, dan untuk Album lebih lengkap kunjungi akun [Instagram ochiiochii.mua](https://www.instagram.com/ochiiochii.mua/)");
 })  
 
 bot.command('cekjadwal', ctx => {

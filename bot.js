@@ -187,7 +187,7 @@ bot.command('hp', ctx => {
     let input = ctx.message.text.split(" ");
     if (input.length != 2){
         ctx.reply("Anda harus menyertakan nomor handphone pada argumen kedua, lihat contoh pada lampiran gambar berikut.");
-        ctx.replyWithPhoto('https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/panduan-hp.png');
+        ctx.replyWithPhoto('https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/hp.png');
         return;
     }
     let phone = input[1];
@@ -277,7 +277,7 @@ bot.command('profil', ctx => {
 bot.command('carapesan', ctx => {
     // ctx.reply("Akan segera hadir");
     ctx.reply("Panduan pemesanan dapat dilihat pada lampiran gambar berikut.");
-    ctx.replyWithPhoto('https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/panduan-pemesanan.png');
+    ctx.replyWithPhoto('https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/pemesanan.png');
 })
 
 // bot.command('pesan', ctx => {

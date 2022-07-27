@@ -7,14 +7,14 @@ Make-up Bot dibuat untuk Telegram Bot yang berguna sebagai sistem pemesanan jasa
 Beberapa fitur yang telah selesai dan belum selesai (on-going)
  - [x] Help
  - [x] Album
+ - [x] Pricelist
  - [x] Tambah Alamat dan Nomor Handphone
- - [ ] Pemesanan
+ - [x] Pemesanan
     - [x] Tambah Pesanan
-    - [ ] ~~Ubah Pesanan~~
-    - [ ] ~~Hapus Pesanan~~
- - [ ] ~~Cara Pesan~~
- - [ ] ~~Cek Ketersediaan Jadwal~~
- - [ ] ~~Pembayaran~~
- - [ ] ~~Status Pemesanan~~
+ - [x] Cara Pesan
+ - [x] Cek Ketersediaan Jadwal
+ - [x] Pembayaran
+ - [x] Status Pemesanan
+ - [x] Cek Profil
 ##
 <center>Made with ❤</center>

@@ -104,14 +104,14 @@ bot.command('start', ctx => {
 
 bot.help(ctx => ctx.replyWithPhoto(
     'https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/perintahbot.png',
-    Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan contoh jenis make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - informasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown()
+    Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan album hasil make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - informasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown()
 ))
 
 bot.action('bantuan', ctx => {
     ctx.answerCbQuery();
     ctx.replyWithPhoto(
         'https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/perintahbot.png',
-        Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan contoh jenis make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - informasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown())
+        Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan album hasil make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - informasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown())
 })
 
 bot.command('album', (ctx) => {
@@ -361,7 +361,6 @@ bot.command('status', ctx => {
     
 //     ctx.reply(userlistMessage);
 // })
-
 bot.launch();
 
 // bot.command('userlist', ctx => {

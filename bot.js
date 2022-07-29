@@ -104,14 +104,14 @@ bot.command('start', ctx => {
 
 bot.help(ctx => ctx.replyWithPhoto(
     'https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/perintahbot.png',
-    Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan album hasil make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - informasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown()
+    Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan album hasil make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - informasi status pemesanan anda\n\n/batalpesan - membatalkan pesanan\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown()
 ))
 
 bot.action('bantuan', ctx => {
     ctx.answerCbQuery();
     ctx.replyWithPhoto(
         'https://raw.githubusercontent.com/rizaldanu/make-up-bot/main/img/perintahbot.png',
-        Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan album hasil make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - informasi status pemesanan anda\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown())
+        Extra.caption('*Daftar perintah Bot ini*:\n\n/help - menampilkan daftar lengkap command\n\n/cekjadwal - menampilkan jadwal yang sudah dipesan\n\n/pricelist - menampilkan daftar harga dan jenis make up\n\n/alamat - merubah alamat anda (*wajib sebelum pesan*)\n\n/hp - merubah nomor handphone anda (*wajib sebelum pesan*)\n\n/profil - menampilkan informasi data diri anda\n\n/album - menampilkan album hasil make up\n\n/carapesan - memberikan panduan untuk pemesanan jasa make up artist\n\n/pesan - melakukan pemesanan make up artist\n\n/pembayaran - memberikan panduan pembayaran\n\n/status - informasi status pemesanan anda\n\n/batalpesan - membatalkan pesanan\n\n*Lihat gambar untuk contoh penulisan command yang benar*').markdown())
 })
 
 bot.command('album', (ctx) => {
@@ -344,11 +344,32 @@ bot.command('status', ctx => {
             })
         })
         dataStore.forEach(item => {
-            statusMessage += `ID Pesanan : #${item.id}\n\n*Status Pesanan: ${item.status}*\n\nKode Make Up: ${item.kode_makeup}\n\nKode Item: ${item.kode_item}\n\nTanggal Make Up: ${item.tanggal_makeup}\n\n==============================\n\n`;
+            statusMessage += `ID Pesanan : ${item.id}\n\n*Status Pesanan: ${item.status}*\n\nKode Make Up: ${item.kode_makeup}\n\nKode Item: ${item.kode_item}\n\nTanggal Make Up: ${item.tanggal_makeup}\n\n==============================\n\n`;
         })
         
         ctx.replyWithMarkdown(statusMessage);
     ctx.replyWithMarkdown('*Silahkan gunakan menu /pembayaran untuk petunjuk pembayaran*')
+    })
+})
+
+bot.command('batalpesan', ctx => {
+    let id = ctx.from.id
+    let input = ctx.message.text.split(" ");
+    if (input.length != 2){
+        ctx.replyWithMarkdown(`*Format batalkan pesanan ada yang kurang!*\nMohon lihat panduan pada gambar dibawah ini`);
+        ctx.replyWithPhoto({source: 'img/batal.png'});
+        return;
+    }
+    let id_pesanan = input[1];
+    //console.log(input[1]);
+    var sql = `UPDATE pesanan set status="Batal" WHERE id_user='${id}' AND id='${id_pesanan}'`;
+    conn.query(sql, function(err, result){
+        if(err){
+            throw err;
+        };
+        ctx.replyWithMarkdown('*Pesanan Anda Telah Di-Batalkan!*')
+        // $admin = 5398951868
+        // bot.telegram.sendMessage($admin, `Halo Admin, ada Pesanan Baru untuk tanggal ${tanggal_makeup}\n\nSilahkan segera di-cek pada web admin \nhttps://dev.rizdan.com/ochii/`)
     })
 })
 

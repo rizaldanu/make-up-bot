@@ -11,6 +11,7 @@ Beberapa fitur yang telah selesai dan belum selesai (on-going)
  - [x] Tambah Alamat dan Nomor Handphone
  - [x] Pemesanan
     - [x] Tambah Pesanan
+    - [x] Batalkan Pesanan
  - [x] Cara Pesan
  - [x] Cek Ketersediaan Jadwal
  - [x] Pembayaran
